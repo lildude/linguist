@@ -41,6 +41,8 @@ class << Linguist
       end
 
       Linguist.instrument("linguist.detected", :blob => blob, :strategy => returning_strategy, :language => languages.first)
+      @verbosity ||= (ENV['LINGUIST_DEBUG'] || 0).to_i
+      puts "  classifier: #{returning_strategy}" if @verbosity > 0
 
       languages.first
     end

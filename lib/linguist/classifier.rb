@@ -85,6 +85,7 @@ module Linguist
       @tokens          = db['tokens']
       @language_tokens = db['language_tokens']
       @languages       = db['languages']
+      @threshold       = 0.15
     end
 
     # Internal: Guess language of data
@@ -94,7 +95,7 @@ module Linguist
     #
     # Returns sorted Array of result pairs. Each pair contains the
     # String language name and a Float score.
-    def classify(tokens, languages)
+    def classify(tokens, languages, default = [])
       return [] if tokens.nil? || languages.empty?
       tokens = Tokenizer.tokenize(tokens) if tokens.is_a?(String)
       scores = {}
@@ -107,6 +108,10 @@ module Linguist
       end
 
       scores.sort { |a, b| b[1] <=> a[1] }.map { |score| [score[0], score[1]] }
+      first, second = scores.shift, scores.shift
+      p 1 - (first[1] / second[1])
+      return Hash[*first] if 1 - (first[1] / second[1]) > @threshold
+      return default
     end
 
     # Internal: Probably of set of tokens in a language occurring - P(D | C)

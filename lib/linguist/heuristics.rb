@@ -148,7 +148,7 @@ module Linguist
         Language["ECL"]
       end
     end
-    
+
     disambiguate ".es" do |data|
       if /^\s*(?:%%|main\s*\(.*?\)\s*->)/.match(data)
         Language["Erlang"]
@@ -435,13 +435,13 @@ module Linguist
         Language["SQL"]
       end
     end
-    
+
     disambiguate ".srt" do |data|
       if /^(\d{2}:\d{2}:\d{2},\d{3})\s*(-->)\s*(\d{2}:\d{2}:\d{2},\d{3})$/.match(data)
         Language["SubRip Text"]
       end
     end
-    
+
     disambiguate ".t" do |data|
       if /^\s*%[ \t]+|^\s*var\s+\w+\s*:=\s*\w+/.match(data)
         Language["Turing"]
@@ -451,7 +451,7 @@ module Linguist
         Language["Perl"]
       end
     end
-    
+
     disambiguate ".toc" do |data|
       if /^## |@no-lib-strip@/.match(data)
         Language["World of Warcraft Addon Data"]
