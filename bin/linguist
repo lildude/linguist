@@ -38,8 +38,8 @@ if File.directory?(path)
     file_breakdown = repo.breakdown_by_file
     file_breakdown.each do |lang, files|
       puts "#{lang}:"
-      files.each do |file|
-        puts file
+      files.sort_by{|ar| ar.last}.reverse.each do |file, size|
+        puts "%10s  %s" % [size.to_filesize, file]
       end
       puts
     end
