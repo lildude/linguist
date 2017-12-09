@@ -72,6 +72,11 @@ elsif File.file?(path)
   if blob.vendored?
     puts "  appears to be a vendored file"
   end
+
+  if blob.documentation?
+    puts "  appears to be documentation"
+  end
+
 else
   abort <<-HELP
   Linguist v#{Linguist::VERSION}
