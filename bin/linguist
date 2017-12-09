@@ -9,6 +9,18 @@ require 'optparse'
 
 path = ARGV[0] || Dir.pwd
 
+class Integer
+  def to_filesize
+    {
+      'B'  => 1024,
+      'KB' => 1024 * 1024,
+      'MB' => 1024 * 1024 * 1024,
+      'GB' => 1024 * 1024 * 1024 * 1024,
+      'TB' => 1024 * 1024 * 1024 * 1024 * 1024
+    }.each_pair { |e, s| return "#{(self.to_f / (s / 1024)).round(2)} #{e}" if self < s }
+  end
+end
+
 # special case if not given a directory
 # but still given the --breakdown or --json options/
 if path == "--breakdown"
@@ -30,7 +42,7 @@ if File.directory?(path)
     repo.languages.sort_by { |_, size| size }.reverse.each do |language, size|
       percentage = ((size / repo.size.to_f) * 100)
       percentage = sprintf '%.2f' % percentage
-      puts "%-7s %s" % ["#{percentage}%", language]
+      puts "%-7s %s (%s)" % ["#{percentage}%", language, size.to_filesize]
     end
   end
   if breakdown
