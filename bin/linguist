@@ -67,15 +67,15 @@ elsif File.file?(path)
   end
 
   if blob.generated?
-    puts "  appears to be generated source code"
+    puts "             appears to be generated source code"
   end
 
   if blob.vendored?
-    puts "  appears to be a vendored file"
+    puts "             appears to be a vendored file"
   end
 
   if blob.documentation?
-    puts "  appears to be documentation"
+    puts "             appears to be documentation"
   end
 
 else
