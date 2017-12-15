@@ -78,6 +78,10 @@ elsif File.file?(path)
     puts "             appears to be documentation"
   end
 
+  unless [:programming, :markup].include?(blob.language.type)
+    puts "             #{blob.language.type} type doesn't count towards statistics"
+  end
+
 else
   abort <<-HELP
   Linguist v#{Linguist::VERSION}
