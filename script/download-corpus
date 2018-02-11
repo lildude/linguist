@@ -84,7 +84,7 @@ begin
     if @total_count > 0
       break if (i-1) * 100 > @total_count
     end
-    search_results = @client.search_code("extension:#{@extension} fork:false NOT hack", :per_page => 100, :page => i)
+    search_results = @client.search_code("extension:#{@extension} NOT hack", :per_page => 100, :page => i)
     @total_count = search_results.total_count
     search_results.items.each do |result|
       if summary
