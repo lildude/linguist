@@ -64,7 +64,8 @@ end
 def summarise
   <<~SUMMARY
   Total files found: #{@total_count}
-  Unique user/repos in first 1000 results: #{@total_repos.length}
+  Unique public user/repos: #{@total_repos.length}
+  Unique owners: #{@total_users.length}
   SUMMARY
 end
 
@@ -89,6 +90,7 @@ begin
     search_results.items.each do |result|
       if summary
         @total_repos << result.repository.full_name
+        @total_users << result.repository.owner.login
       else
         require 'zip' # Need a gemfile to install this
         if blob = blob_from_result(result)
