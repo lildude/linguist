@@ -104,7 +104,7 @@ begin
   end
   puts
   puts summarise if summary
-  puts "- #{@total_repos.to_a.join("\n- ")}" if verbose
+  puts "- #{@total_repos.to_a.sort.join("\n- ")}" if verbose
   rescue Octokit::Unauthorized => e
     STDERR.puts e.message
     abort
