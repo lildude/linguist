@@ -99,7 +99,7 @@ begin
       end
     end
     print "#{i} "
-    interval = 1 + rand(10)
+    interval = 30 + rand(15)
     sleep interval
   end
   puts
