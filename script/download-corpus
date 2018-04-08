@@ -100,7 +100,7 @@ begin
     end
     print "#{i} "
     interval = 30 + rand(15)
-    sleep interval
+    sleep interval unless i == 10
   end
   puts
   puts summarise if summary
