@@ -49,37 +49,37 @@ if File.directory?(path)
 elsif File.file?(path)
   blob = Linguist::FileBlob.new(path, Dir.pwd)
   type = if blob.text?
-    'Text'
-  elsif blob.image?
-    'Image'
-  else
-    'Binary'
-  end
+      'Text'
+    elsif blob.image?
+      'Image'
+    else
+      'Binary'
+    end
 
-  puts "#{blob.name}: #{blob.loc} lines (#{blob.sloc} sloc)"
-  puts "  type:      #{type}"
-  puts "  mime type: #{blob.mime_type}"
-  puts "  language:  #{blob.language}"
-  puts "  in stats?: #{blob.include_in_language_stats?} (#{blob.language.type})"
+  msg ||= case
+    when blob.large?
+      "blob is too large to be shown"
+    when ! [:programming, :markup].include?(blob.language.type)
+      "#{blob.language.type} type doesn't count towards statistics"
+    when blob.generated?
+      "appears to be generated source code"
+    when blob.vendored?
+      "appears to be a vendored file as the path matches one in lib/linguist/vendor.yml"
+    when blob.documentation?
+      "appears to be documentation as the path matches one in lib/linguist/documentation.yml"
+    end
 
-  if blob.large?
-    puts "  blob is too large to be shown"
-  end
+  infos = {
+    "type"          => type,
+    "mime type"     => blob.mime_type,
+    "language"      => blob.language,
+    "language type" => blob.language.type,
+    "in stats?"     => "#{blob.include_in_language_stats?} - #{msg}"
+  }
 
-  if blob.generated?
-    puts "             appears to be generated source code"
-  end
-
-  if blob.vendored?
-    puts "             appears to be a vendored file"
-  end
-
-  if blob.documentation?
-    puts "             appears to be documentation"
-  end
-
-  unless [:programming, :markup].include?(blob.language.type)
-    puts "             #{blob.language.type} type doesn't count towards statistics"
+  puts "#{blob.name}: #{blob.size.to_filesize}, #{blob.loc} lines (#{blob.sloc} sloc)\n\n"
+  for k, v in infos do
+    puts "%13s: %s" % [k, v]
   end
 
 else
