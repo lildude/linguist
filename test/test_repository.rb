@@ -6,7 +6,7 @@ class TestRepository < Minitest::Test
   end
 
   def master_oid
-    'd40b4a33deba710e2f494db357c654fbe5d4b419'
+    '7dbcffcf982e766fc711e633322de848f2b60ba5'
   end
 
   def linguist_repo(oid = master_oid)
@@ -27,7 +27,7 @@ class TestRepository < Minitest::Test
 
   def test_linguist_breakdown
     assert linguist_repo.breakdown_by_file.has_key?("Ruby")
-    assert linguist_repo.breakdown_by_file["Ruby"].include?("bin/linguist")
+    assert linguist_repo.breakdown_by_file["Ruby"].include?("bin/github-linguist")
     assert linguist_repo.breakdown_by_file["Ruby"].include?("lib/linguist/language.rb")
   end
 
@@ -120,5 +120,17 @@ class TestRepository < Minitest::Test
 
     # overridden .gitattributes
     assert rakefile.generated?
+  end
+
+  def test_linguist_override_detectable?
+    attr_commit = "8f86998866f6f2c8aa14e0dd430e61fd25cff720"
+    linguist_repo(attr_commit).read_index
+
+    # markdown is overridden by .gitattributes to be detectable, html to not be detectable
+    markdown = Linguist::LazyBlob.new(rugged_repository, attr_commit, "samples/Markdown/tender.md")
+    html = Linguist::LazyBlob.new(rugged_repository, attr_commit, "samples/HTML/pages.html")
+
+    assert_predicate markdown, :detectable?
+    refute_predicate html, :detectable?
   end
 end
