@@ -58,15 +58,15 @@ elsif File.file?(path)
 
   msg ||= case
     when blob.large?
-      "blob is too large to be shown"
+      "- blob is too large to be shown"
     when ! [:programming, :markup].include?(blob.language.type)
-      "#{blob.language.type} type doesn't count towards statistics"
+      "- #{blob.language.type} type doesn't count towards statistics"
     when blob.generated?
-      "appears to be generated source code"
+      "- appears to be generated source code"
     when blob.vendored?
-      "appears to be a vendored file as the path matches one in lib/linguist/vendor.yml"
+      "- appears to be a vendored file as the path matches one in lib/linguist/vendor.yml"
     when blob.documentation?
-      "appears to be documentation as the path matches one in lib/linguist/documentation.yml"
+      "- appears to be documentation as the path matches one in lib/linguist/documentation.yml"
     end
 
   infos = {
@@ -74,10 +74,11 @@ elsif File.file?(path)
     "mime type"     => blob.mime_type,
     "language"      => blob.language,
     "language type" => blob.language.type,
-    "in stats?"     => "#{blob.include_in_language_stats?} - #{msg}"
+    "in stats?"     => "#{blob.include_in_language_stats?} #{msg}"
   }
 
-  puts "#{blob.name}: #{blob.size.to_filesize}, #{blob.loc} lines (#{blob.sloc} sloc)\n\n"
+  warning = " WARNING: file is larger than 384kb so will not be included in search results" if blob.size > 393216
+  puts "#{blob.name}: #{blob.size.to_filesize}, #{blob.loc} lines (#{blob.sloc} sloc)#{warning}\n\n"
   for k, v in infos do
     puts "%13s: %s" % [k, v]
   end
