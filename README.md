@@ -72,32 +72,45 @@ project.languages      #=> { "Ruby" => 119387 }
 
 ### Command line usage
 
-A repository's languages stats can also be assessed from the command line using the `linguist` executable. Without any options, `linguist` will output the breakdown that correlates to what is shown in the language stats bar. The `--breakdown` flag will additionally show the breakdown of files by language.
+A repository's languages stats can also be assessed from the command line using the `linguist` executable. Without any options, `github-linguist` will output the breakdown that correlates to what is shown in the language stats bar. The `--breakdown` flag will additionally show the breakdown of files by language.
 
 ```console
 $ cd /path-to-repository/
 $ github-linguist
 ```
 
-You can try running `linguist` on the root directory in this repository itself:
+You can try running `github-linguist` on the root directory in this repository itself:
 
 ```console
-$ bundle exec bin/github-linguist --breakdown
-68.57%  Ruby
-22.90%  C
-6.93%   Go
-1.21%   Lex
-0.39%   Shell
+$ github-linguist --breakdown
+ 234.38 KB  69.26%  Ruby
+   73.9 KB  21.84%  C
+  23.93 KB   7.07%  Go
+   3.87 KB   1.14%  Lex
+   1.46 KB   0.43%  Shell
+   903.0 B   0.26%  Dockerfile
 
 Ruby:
-Gemfile
-Rakefile
-bin/git-linguist
-bin/github-linguist
-ext/linguist/extconf.rb
-github-linguist.gemspec
-lib/linguist.rb
-…
+  27.97 KB  test/test_file_blob.rb
+   20.6 KB  test/test_language.rb
+  18.71 KB  lib/linguist/generated.rb
+  15.89 KB  lib/linguist/heuristics.rb
+  14.04 KB  lib/linguist/language.rb
+   13.3 KB  test/test_blob.rb
+[...]
+```
+
+A specific file can be assessed too:
+
+```console
+$ github-linguist lib/linguist.rb
+linguist.rb: 3.1 KB, 103 lines (93 sloc)
+
+         type: Text
+    mime type: application/x-ruby
+     language: Ruby
+language type: programming
+    in stats?: true
 ```
 
 
@@ -107,7 +120,7 @@ lib/linguist.rb
 
 If the language stats bar is reporting a language that you don't expect:
 
-1. Click on the name of the language in the stats bar to see a list of the files that are identified as that language.  
+1. Click on the name of the language in the stats bar to see a list of the files that are identified as that language.
   Keep in mind this performs a search so the [code search restrictions](https://help.github.com/articles/searching-code/#considerations-for-code-search) may result in files identified in the language statistics not appearing in the search results. [Installing Linguist locally](#usage) and running it from the [command line](#command-line-usage) will give you accurate results.
 1. If you see files that you didn't write in the search results, consider moving the files into one of the [paths for vendored code](/lib/linguist/vendor.yml), or use the [manual overrides](#overrides) feature to ignore them.
 1. If the files are misclassified, search for [open issues][issues] to see if anyone else has already reported the issue. Any information you can add, especially links to public repositories, is helpful. You can also use the [manual overrides](#overrides) feature to correctly classify them in your repository.
