@@ -63,6 +63,16 @@ func (l *fsLoader) load() {
 	}
 
 	for _, path := range grammars {
+		rel, err := filepath.Rel("/src/linguist/vendor/grammars/", path)
+		if err != nil {
+			l.Fail(err)
+			return
+		}
+
+		if IgnoredFiles[rel] {
+			continue
+		}
+
 		data, err := ioutil.ReadFile(path)
 		if err != nil {
 			l.Fail(err)
@@ -73,7 +83,7 @@ func (l *fsLoader) load() {
 			path = rel
 		}
 
-		rule, unknown, err := ConvertProto(filepath.Ext(path), data)
+		rule, unknown, err := ConvertProto(path, filepath.Ext(path), data)
 		if err != nil {
 			l.Fail(&ConversionError{path, err})
 			continue

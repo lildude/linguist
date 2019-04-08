@@ -1,11 +1,9 @@
 ---
 type: grammar
 name: TypeScript-TmLanguage
+version: 17761d144b2bd62ffc9ad61eddcd10ec307a7bbc
 license: mit
 ---
-
-TypeScript Grammar 
-
 Copyright (c) Microsoft Corporation
 All rights reserved.
 

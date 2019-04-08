@@ -1,6 +1,7 @@
 ---
 type: grammar
 name: language-reason
+version: fb23884c576f8989cd6927d05854adf30b6469f0
 license: mit
 ---
 Copyright (c) 2016 Cheng Lou

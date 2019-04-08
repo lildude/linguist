@@ -1,11 +1,12 @@
 ---
 type: grammar
 name: language-haskell
+version: a2f1930fbb4ea36739f961aca089d80d2637f3b8
 license: mit
 ---
 The MIT License (MIT)
 
-Copyright (c) 2015 Atom-Haskell
+Copyright (c) 2014 Atom-Haskell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

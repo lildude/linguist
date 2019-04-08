@@ -1,6 +1,7 @@
 ---
 type: grammar
 name: atom-language-rust
+version: f0da473df3f36cbcc33f3de9025ae53b910bfd9b
 license: mit
 ---
 The MIT License (MIT)
