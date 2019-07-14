@@ -11,6 +11,26 @@ By participating, you are expected to uphold this code.
 
 The majority of contributions won't need to touch any Ruby code at all.
 
+### Dependencies
+
+Linguist uses the [`charlock_holmes`](https://github.com/brianmario/charlock_holmes) character encoding detection library which in turn uses [ICU](http://site.icu-project.org/), and the libgit2 bindings for Ruby provided by [`rugged`](https://github.com/libgit2/rugged).
+[Bundler](https://bundler.io/) v1.10.0 or newer is required for installing the Ruby gem dependencies.
+[Docker](https://www.docker.com/) is also required when adding or updating grammars.
+These components have their own dependencies - `icu4c`, and `cmake` and `pkg-config` respectively - which you may need to install before you can install Linguist.
+
+For example, on macOS with [Homebrew](http://brew.sh/):
+```bash
+brew install cmake pkg-config icu4c
+brew cask install docker
+```
+
+On Ubuntu:
+```bash
+apt-get install cmake pkg-config libicu-dev docker-ce
+```
+
+The latest version of Bundler v1 can be installed with `gem install bundler -v "~>1.10"`.
+
 ## Getting started
 
 Before you can start contributing to Linguist, you'll need to set up your environment first.
@@ -34,24 +54,6 @@ To run Linguist from the cloned repository:
 
 ```bash
 bundle exec bin/github-linguist --breakdown
-```
-
-### Dependencies
-
-Linguist uses the [`charlock_holmes`](https://github.com/brianmario/charlock_holmes) character encoding detection library which in turn uses [ICU](http://site.icu-project.org/), and the libgit2 bindings for Ruby provided by [`rugged`](https://github.com/libgit2/rugged).
-[Docker](https://www.docker.com/) is also required when adding or updating grammars.
-These components have their own dependencies - `icu4c`, and `cmake` and `pkg-config` respectively - which you may need to install before you can install Linguist.
-
-For example, on macOS with [Homebrew](http://brew.sh/):
-
-```bash
-brew install cmake pkg-config icu4c docker
-```
-
-On Ubuntu:
-
-```bash
-apt-get install cmake pkg-config libicu-dev docker-ce
 ```
 
 ## Adding an extension to a language
@@ -134,6 +136,8 @@ If you can, try to reproduce the highlighting problem in the text editor that th
 
 You can also try to fix the bug yourself and submit a pull-request.
 [TextMate's documentation](https://manual.macromates.com/en/language_grammars) offers a good introduction on how to work with TextMate-compatible grammars.
+Note that Linguist uses [PCRE](https://www.pcre.org/) regular expressions, while TextMate uses [Oniguruma](https://github.com/kkos/oniguruma). 
+Although they are mostly compatible there might be some differences in syntax and semantics between the two. 
 You can test grammars using [Lightshow](https://github-lightshow.herokuapp.com).
 
 Once the bug has been fixed upstream, we'll pick it up for GitHub in the next release of Linguist.
@@ -157,6 +161,18 @@ If problems are found, please report these problems to the grammar maintainer as
 
 Please then open a pull request for the updated grammar.
 
+## Changing the color associated with a language
+
+Many of the colors associated with the languages within Linguist have been in place for a very long time.
+The colors were often chosen based on the colors used by the language at the time and since then users will have become familiar with those colors as they appear on GitHub.com.
+If you would like to change the color of a language, we ask that you propose your suggested color change to the wider community for your language to gain consensus before submitting a pull request.
+Please do this in a community forum or repository used and known by the wider community of that language, not the Linguist repository.
+
+Once you've received consensus that the community is happy with your proposed color change, please feel free to open a PR making the change and link to the public discussion where this was agreed by the community.
+If there are official branding guidelines to support the colour choice, please link to those too.
+
+Please note that Linguist currently implements a [color proximity test][] to ensure colors are sufficiently different from one another so you may not be able to use the precise color you want - reds and blues are really popular.
+As such, we recommend you test the color change locally before making your plea to the wider language community.
 
 ## Testing
 
@@ -201,10 +217,12 @@ If you are the current maintainer of this gem:
 1. Make sure your local dependencies are up to date: `script/bootstrap`
 1. If grammar submodules have not been updated recently, update them: `git submodule update --remote`.
    If any submodules are updated:
-     1. Update the license cache: `script/licensed`
-     1. Double check no problems found: `script/licensed status`
-     1. Verify and fix any problems identified
-     1. Commit all changes: `git commit -a`
+    1. update the `grammars.yml`: `script/grammar-compiler update -f`
+    1. update the license cache: `script/licensed`
+    1. double check no license problems found: `script/licensed status`
+    1. confirm the updated grammars still compile and no new errors have been introduced and none have gone missing: `bundle exec rake check_grammars`
+    1. verify and fix any problems identified in the two steps above
+    1. commit all changes: `git commit -a`
 1. Ensure that samples are updated: `bundle exec rake samples`
 1. Ensure that tests are green: `bundle exec rake test`
 1. Build a test gem `GEM_VERSION=$(git describe --tags 2>/dev/null | sed 's/-/./g' | sed 's/v//') bundle exec rake build_gem`
@@ -217,7 +235,7 @@ If you are the current maintainer of this gem:
 1. Build a local gem: `bundle exec rake build_gem`
 1. Merge github/linguist PR
 1. Tag and push: `git tag vx.xx.xx; git push --tags`
-1. Create a GitHub release with the pushed tag (https://github.com/github/linguist/releases/new)
+1. Create a GitHub release with the pushed tag (https://github.com/github/linguist/releases/new) and populate it with a list of the commits from `git log --pretty=format:"- %s" --reverse refs/tags/[OLD TAG]...refs/tags/[NEW TAG]` [like this](https://github.com/github/linguist/releases/tag/v7.2.0)
 1. Build a grammars tarball (`./script/build-grammars-tarball`) and attach it to the GitHub release
 1. Push to rubygems.org -- `gem push github-linguist-3.0.0.gem`
 
@@ -227,5 +245,6 @@ If you are the current maintainer of this gem:
 [languages]: /lib/linguist/languages.yml
 [licenses]: https://github.com/github/linguist/blob/257425141d4e2a5232786bf0b13c901ada075f93/vendor/licenses/config.yml#L2-L11
 [new-issue]: https://github.com/github/linguist/issues/new
+[color proximity test]: https://github.com/github/linguist/blob/master/test/test_color_proximity.rb
 [samples]: /samples
 [search-example]: https://github.com/search?utf8=%E2%9C%93&q=extension%3Aboot+NOT+nothack&type=Code&ref=searchresults

@@ -1,7 +1,7 @@
 ---
 type: grammar
 name: TypeScript-TmLanguage
-version: 17761d144b2bd62ffc9ad61eddcd10ec307a7bbc
+version: bc9bb2275c3e510a1a1286ee90de2a7af9f432b4
 license: mit
 ---
 Copyright (c) Microsoft Corporation
