@@ -1,29 +1,21 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-#/ Usage: GITHUB_TOKEN=<github_access_token> download-corpus [-h|--help|--summary] [--verbose] <extension>
+#/ Usage: GITHUB_TOKEN=<github_access_token> download-corpus [-h|--help|--download] [--verbose] <extension>
 #/
-#/ Downloads the first 1000 public files found on GitHub that have the supplied extension.
+#/ Counts, and optionally downloads up to the first 1000 public files found on GitHub that have the supplied extension.
 #/
-#/ Requires the GITHUB_TOKEN environment variable to be set containing a GitHub
-#/ personal access token.
+#/ Requires the GITHUB_TOKEN environment variable to be set containing a GitHub personal access token.
 #/
 
-# Replacing: https://github.com/github/github/blob/94de23a5233e1475739a9ed5c07209a9d1073ba0/jobs/linguist_samples.rb
+require 'bundler/inline'
 
-# TODO:
-# - Show total file count overall (will be more than 1000)
-# - Show a total of unique file names
-# - Show a total of unique owner/repo
-# - Create zip file - https://stackoverflow.com/questions/2405921/how-can-i-generate-zip-file-without-saving-to-the-disk-with-ruby
+gemfile do
+  source 'https://rubygems.org'
+  gem 'octokit', require: true
+  gem 'rubyzip', require: 'zip'
+end
 
-require 'rubygems'
-require 'bundler'
-require 'bundler/setup'
-require 'octokit'
-require 'base64'
-
-# TODO: Replace me with a full ruby implementation
 def usage
   system "grep '^#/' '#{__FILE__}' | cut -c 4-"
 end
@@ -33,9 +25,9 @@ if ARGV.include?('--help') || ARGV.include?('-h') || ENV['GITHUB_TOKEN'].nil? ||
   exit 2
 end
 
-summary = !!ARGV.delete("--summary")
-verbose = !!ARGV.delete("--verbose")
-@extension = ARGV[0].gsub(/^\./, '')
+download = !!ARGV.delete("--download")
+@verbose = !!ARGV.delete("--verbose")
+extension = ARGV[0].gsub(/^\./, '')
 search_results = []
 
 # Internal: Get the blob for the given search result
@@ -52,71 +44,68 @@ end
 # Internal: The filename of the zip archive
 def filename
   return @filename if @filename
-  file = Tempfile.new("linguist").tap do |f|
+  file = Tempfile.new(["linguist-corpus-", ".zip"]).tap do |f|
     @filename = f.path
     f.close
     f.unlink
   end
-  puts @filename
+  puts "Saving corpus to #{@filename} ..."
   @filename
 end
 
 def summarise
-  <<~SUMMARY
+  if @verbose
+    repos = "User/repos: \n"
+    repos += "- #{@total_repos.to_a.join("\n- ")}"
+  end
+  puts <<~SUMMARY
+
   Total files found: #{@total_count}
   Unique public user/repos: #{@total_repos.length}
   Unique owners: #{@total_users.length}
+  #{repos}
   SUMMARY
 end
 
 # Internal: A zip file that can be appended to.
 def zip
-  @zip ||= Zip::ZipOutputStream.open(filename)
+  @zip ||= Zip::OutputStream.open(filename)
 end
 
-begin
-  @total_users = Set.new
-  @total_repos = Set.new
-  @total_count = 0
-  @client = Octokit::Client.new access_token: ENV['GITHUB_TOKEN']
-  # TODO, this and auto-pagination pummel the API and we get barred for abuse.
-  # Hubot's token may not have this problem.
-  (1..10).each do |i|
+@total_users = Set.new
+@total_repos = Set.new
+@total_count = 0
+@client = Octokit::Client.new access_token: ENV['GITHUB_TOKEN']
+
+(1..10).each do |i|
+  begin
     if @total_count > 0
       break if (i-1) * 100 > @total_count
     end
-    search_results = @client.search_code("extension:#{@extension} NOT hack", :per_page => 100, :page => i)
+    search_results = @client.search_code("extension:#{extension} NOT hack", :per_page => 100, :page => i)
     @total_count = search_results.total_count
     search_results.items.each do |result|
-      if summary
-        @total_repos << result.repository.full_name
-        @total_users << result.repository.owner.login
-      else
-        require 'zip' # Need a gemfile to install this
+      @total_repos << result.repository.full_name
+      @total_users << result.repository.owner.login
+      if download
         if blob = blob_from_result(result)
           add "#{result.repository.full_name}/#{result.path}", blob
         end
       end
     end
     print "#{i} "
-    interval = 30 + rand(15)
-    sleep interval unless i == 10
-  end
-  puts
-  puts summarise if summary
-  puts "- #{@total_repos.to_a.sort.join("\n- ")}" if verbose
   rescue Octokit::Unauthorized => e
     STDERR.puts e.message
     abort
-  rescue Octokit::TooManyRequests
-    sleep client.rate_limit.resets_in
-    retry
-  rescue Octokit::AbuseDetected
-    sleep 60
+  rescue Octokit::TooManyRequests, Octokit::AbuseDetected
+    sleep @client.rate_limit.resets_in
     retry
   rescue Octokit::NotFound
-    STDERR.puts "No files with .#{@extension} found."
+    STDERR.puts "No files with .#{extension} found."
     abort
-  ensure
-    zip.close unless summary
+  end
 end
+
+zip.close if download
+
+summarise
