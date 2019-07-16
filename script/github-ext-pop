@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-#/ Usage: GITHUB_TOKEN=<github_access_token> download-corpus [-h|--help|--download] [--verbose] <extension>
+#/ Usage: GITHUB_TOKEN=<github_access_token> github-ext-pop [-h|--help|--download] [--verbose] <extension>
 #/
 #/ Counts, and optionally downloads up to the first 1000 public files found on GitHub that have the supplied extension.
 #/
