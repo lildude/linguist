@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-#/ Usage: GITHUB_TOKEN=<github_access_token> github-ext-pop [-h|--help|--download] [--verbose] <extension>
+#/ Usage: GITHUB_TOKEN=<github_access_token> github-ext-pop [-h|--help|--download] [--list-repos] <extension>
 #/
 #/ Counts, and optionally downloads up to the first 1000 public files found on GitHub that have the supplied extension.
 #/
@@ -26,7 +26,7 @@ if ARGV.include?('--help') || ARGV.include?('-h') || ENV['GITHUB_TOKEN'].nil? ||
 end
 
 download = !!ARGV.delete("--download")
-@verbose = !!ARGV.delete("--verbose")
+@list_repos = !!ARGV.delete("--list-repos")
 extension = ARGV[0].gsub(/^\./, '')
 search_results = []
 
@@ -54,7 +54,7 @@ def filename
 end
 
 def summarise
-  if @verbose
+  if @list_repos
     repos = "User/repos: \n"
     repos += "- #{@total_repos.to_a.join("\n- ")}"
   end
