@@ -25,7 +25,7 @@ if ARGV.include?('--help') || ARGV.include?('-h') || ENV['GITHUB_TOKEN'].nil? ||
   exit 2
 end
 
-download = !!ARGV.delete("--download")
+@download = !!ARGV.delete("--download")
 @list_repos = !!ARGV.delete("--list-repos")
 extension = ARGV[0].gsub(/^\./, '')
 search_results = []
@@ -56,7 +56,7 @@ end
 def summarise
   if @list_repos
     repos = "User/repos: \n"
-    repos += "- #{@total_repos.to_a.join("\n- ")}"
+    repos += "- #{@total_repos.to_a.sort.join("\n- ")}"
   end
   puts <<~SUMMARY
 
@@ -72,40 +72,51 @@ def zip
   @zip ||= Zip::OutputStream.open(filename)
 end
 
+def gather_results(extension, order = nil)
+  sort = order.nil? ? nil : "indexed"
+  STDERR.print "#{order.nil? ? "best match" : order}: "
+  (1..10).each do |i|
+    begin
+      if @total_count > 0
+        break if (i-1) * 100 > @total_count
+      end
+      search_results = @client.search_code("extension:#{extension} NOT nothack", :per_page => 100, :page => i, sort: sort, order: order)
+      @total_count = search_results.total_count
+      search_results.items.each do |result|
+        @total_repos << result.repository.full_name
+        @total_users << result.repository.owner.login
+        if @download
+          if blob = blob_from_result(result)
+            add "#{result.repository.full_name}/#{result.path}", blob
+          end
+        end
+      end
+      STDERR.print "#{i} "
+    rescue Octokit::Unauthorized => e
+      STDERR.puts e.message
+      abort
+    rescue Octokit::TooManyRequests, Octokit::AbuseDetected
+      sleep @client.rate_limit.resets_in
+      retry
+    rescue Octokit::NotFound
+      STDERR.puts "No files with .#{extension} found."
+      abort
+    end
+  end
+end
+
 @total_users = Set.new
 @total_repos = Set.new
 @total_count = 0
 @client = Octokit::Client.new access_token: ENV['GITHUB_TOKEN']
 
-(1..10).each do |i|
-  begin
-    if @total_count > 0
-      break if (i-1) * 100 > @total_count
-    end
-    search_results = @client.search_code("extension:#{extension} NOT hack", :per_page => 100, :page => i)
-    @total_count = search_results.total_count
-    search_results.items.each do |result|
-      @total_repos << result.repository.full_name
-      @total_users << result.repository.owner.login
-      if download
-        if blob = blob_from_result(result)
-          add "#{result.repository.full_name}/#{result.path}", blob
-        end
-      end
-    end
-    print "#{i} "
-  rescue Octokit::Unauthorized => e
-    STDERR.puts e.message
-    abort
-  rescue Octokit::TooManyRequests, Octokit::AbuseDetected
-    sleep @client.rate_limit.resets_in
-    retry
-  rescue Octokit::NotFound
-    STDERR.puts "No files with .#{extension} found."
-    abort
-  end
+gather_results(extension)
+
+if @total_count > 1000
+  gather_results(extension, "desc")
+  gather_results(extension, "asc")
 end
 
-zip.close if download
+zip.close if @download
 
 summarise
