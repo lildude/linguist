@@ -3,8 +3,6 @@ https://bitbucket.org/Clams/sublimesystemverilog/get/default.tar.gz:
 - source.ucfconstraints
 https://svn.edgewall.org/repos/genshi/contrib/textmate/Genshi.tmbundle/Syntaxes/Markup%20Template%20%28XML%29.tmLanguage:
 - text.xml.genshi
-vendor/grammars/ABNF.tmbundle:
-- source.abnf
 vendor/grammars/Agda.tmbundle:
 - source.agda
 vendor/grammars/Alloy.tmbundle:
@@ -23,8 +21,6 @@ vendor/grammars/ColdFusion:
 - text.html.cfm
 vendor/grammars/Docker.tmbundle:
 - source.dockerfile
-vendor/grammars/EBNF.tmbundle:
-- source.ebnf
 vendor/grammars/Elm/Syntaxes:
 - source.elm
 - text.html.mediawiki.elm-build-output
@@ -194,6 +190,7 @@ vendor/grammars/assembly:
 - source.x86asm
 vendor/grammars/atom-editorconfig:
 - source.editorconfig
+- text.plain
 vendor/grammars/atom-firestore-grammar:
 - source.firestore
 vendor/grammars/atom-fsharp:
@@ -211,6 +208,8 @@ vendor/grammars/atom-language-clean:
 - text.restructuredtext.clean
 vendor/grammars/atom-language-haproxy:
 - source.haproxy-config
+vendor/grammars/atom-language-innosetup:
+- source.inno
 vendor/grammars/atom-language-julia:
 - source.julia
 - source.julia.console
@@ -247,8 +246,6 @@ vendor/grammars/babel-sublime:
 - source.js.jsx
 vendor/grammars/ballerina-grammar:
 - source.ballerina
-vendor/grammars/bison.tmbundle:
-- source.bison
 vendor/grammars/blitzmax:
 - source.blitzmax
 vendor/grammars/boo:
@@ -434,7 +431,9 @@ vendor/grammars/language-etc:
 - source.man-conf
 - source.nanorc
 - source.opts
+- source.smpl
 - source.ssh-config
+- text.xml.svg
 vendor/grammars/language-fontforge:
 - source.afm
 - source.bdf
@@ -451,6 +450,14 @@ vendor/grammars/language-gfm:
 - source.gfm
 vendor/grammars/language-gn:
 - source.gn
+vendor/grammars/language-grammars:
+- source.abnf
+- source.bnf
+- source.ebnf
+- source.jlex
+- source.lex
+- source.lex.regexp
+- source.yacc
 vendor/grammars/language-graphql:
 - source.graphql
 vendor/grammars/language-haml:
@@ -471,6 +478,8 @@ vendor/grammars/language-hql:
 - source.hql
 vendor/grammars/language-html:
 - text.html.basic
+vendor/grammars/language-igor:
+- source.igor
 vendor/grammars/language-inform7:
 - source.inform7
 vendor/grammars/language-javascript:
@@ -516,6 +525,9 @@ vendor/grammars/language-pcb:
 - source.pcb.sexp
 vendor/grammars/language-povray:
 - source.pov-ray sdl
+vendor/grammars/language-property-list:
+- source.plist
+- text.xml.plist
 vendor/grammars/language-reason:
 - source.reason
 - source.reason.hover.type
@@ -524,6 +536,7 @@ vendor/grammars/language-reg:
 vendor/grammars/language-regexp:
 - source.regexp
 - source.regexp.extended
+- source.sy
 vendor/grammars/language-renpy:
 - source.renpy
 vendor/grammars/language-restructuredtext:
@@ -533,6 +546,7 @@ vendor/grammars/language-ring:
 vendor/grammars/language-roff:
 - source.ditroff
 - source.ditroff.desc
+- source.gremlin
 - source.ideal
 - source.pic
 - text.roff
@@ -557,6 +571,8 @@ vendor/grammars/language-shellscript:
 - text.shell-session
 vendor/grammars/language-supercollider:
 - source.supercollider
+vendor/grammars/language-texinfo:
+- text.texinfo
 vendor/grammars/language-toc-wow:
 - source.toc
 vendor/grammars/language-tsql:
@@ -621,6 +637,8 @@ vendor/grammars/mediawiki.tmbundle:
 - text.html.mediawiki
 vendor/grammars/mercury-tmlanguage:
 - source.mercury
+vendor/grammars/mlir-grammar:
+- source.mlir
 vendor/grammars/monkey:
 - source.monkey
 vendor/grammars/moonscript-tmbundle:
@@ -706,8 +724,8 @@ vendor/grammars/smali-sublime:
 - source.smali
 vendor/grammars/smalltalk-tmbundle:
 - source.smalltalk
-vendor/grammars/sourcepawn:
-- source.sp
+vendor/grammars/sourcepawn-vscode:
+- source.sourcepawn
 vendor/grammars/sql.tmbundle:
 - source.sql
 vendor/grammars/squirrel-language:
@@ -810,10 +828,14 @@ vendor/grammars/vscode-hack:
 - source.hack
 vendor/grammars/vscode-lean:
 - source.lean
+vendor/grammars/vscode-opa:
+- source.rego
 vendor/grammars/vscode-scala-syntax:
 - source.scala
 vendor/grammars/vscode-slice:
 - source.slice
+vendor/grammars/vscode-vlang:
+- source.v
 vendor/grammars/vscode-zil-language:
 - source.zap
 - source.zil
