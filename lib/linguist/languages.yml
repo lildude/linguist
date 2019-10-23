@@ -1132,6 +1132,13 @@ Diff:
   codemirror_mode: diff
   codemirror_mime_type: text/x-diff
   language_id: 88
+DirectX 3D File:
+  type: data
+  extensions:
+  - ".x"
+  ace_mode: text
+  tm_scope: none
+  language_id: 201049282
 Dockerfile:
   type: programming
   color: "#384d54"
@@ -3231,6 +3238,17 @@ Motorola 68K Assembly:
   tm_scope: source.m68k
   ace_mode: assembly_x86
   language_id: 477582706
+Muse:
+  type: prose
+  extensions:
+  - ".muse"
+  tm_scope: none
+  ace_mode: text
+  wrap: true
+  language_id: 474864066
+  aliases:
+  - amusewiki
+  - emacs muse
 Myghty:
   type: programming
   extensions:
@@ -3968,6 +3986,13 @@ PowerShell:
   interpreters:
   - pwsh
   language_id: 293
+Prisma:
+  type: data
+  extensions:
+  - ".prisma"
+  tm_scope: source.prisma
+  ace_mode: text
+  language_id: 499933428
 Processing:
   type: programming
   color: "#0096D8"
@@ -4111,7 +4136,10 @@ Python:
   - python2
   - python3
   aliases:
+  - bazel
+  - bzl
   - rusthon
+  - starlark
   - python3
   language_id: 303
 Python console:
@@ -4406,6 +4434,14 @@ Ring:
   tm_scope: source.ring
   ace_mode: text
   language_id: 431
+Riot:
+  type: markup
+  color: "#A71E49"
+  ace_mode: html
+  extensions:
+  - ".riot"
+  tm_scope: text.html.riot
+  language_id: 878396783
 RobotFramework:
   type: programming
   extensions:
@@ -6041,6 +6077,14 @@ fish:
   tm_scope: source.fish
   ace_mode: text
   language_id: 415
+mIRC Script:
+  type: programming
+  color: "#926059"
+  extensions:
+  - ".mrc"
+  tm_scope: source.mrc
+  ace_mode: text
+  language_id: 517654727
 mcfunction:
   type: programming
   color: "#E22837"
