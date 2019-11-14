@@ -264,6 +264,12 @@ class TestHeuristics < Minitest::Test
     })
   end
 
+  def test_mask_by_heuristics
+    assert_heuristics({
+      "Unity3D Asset" => all_fixtures("Unity3D Asset", "*.mask")
+    })
+  end
+
   def test_md_by_heuristics
     assert_heuristics({
       "Markdown" => all_fixtures("Markdown", "*.md"),
@@ -369,9 +375,10 @@ class TestHeuristics < Minitest::Test
     })
   end
 
-  # Candidate languages = ["IDL", "Prolog", "QMake", "INI"]
+  # Candidate languages = ["IDL", "Proguard", "Prolog", "QMake", "INI"]
   def test_pro_by_heuristics
     assert_heuristics({
+      "Proguard" => all_fixtures("Proguard", "*.pro"),
       "Prolog" => all_fixtures("Prolog", "*.pro"),
       "IDL" => all_fixtures("IDL", "*.pro"),
       "INI" => all_fixtures("INI", "*.pro"),
