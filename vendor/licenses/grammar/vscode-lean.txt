@@ -1,7 +1,7 @@
 ---
 type: grammar
 name: vscode-lean
-version: d3d05c066b49c1f23f6524e7b3a5ce293bdb926f
+version: 8019b3fb444072f38788123cd9cdf9dade6626df
 license: apache-2.0
 ---
                                  Apache License

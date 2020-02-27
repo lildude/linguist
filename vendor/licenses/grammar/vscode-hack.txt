@@ -1,7 +1,7 @@
 ---
 type: grammar
 name: vscode-hack
-version: e4c112a75f5d2107671a54837e31b0e2e55b44e4
+version: 72beaf978fa89d1a90a1cc60c12d0b1f6ca77413
 license: mit
 ---
 MIT License

@@ -1,7 +1,7 @@
 ---
 type: grammar
 name: language-viml
-version: 488215aef78377e0bacab0f7441d0286c01ab9b3
+version: 7a0d6cd97125e4d618348a277c537595bd40c2ca
 license: mit
 ---
 The MIT License (MIT)

@@ -1,7 +1,7 @@
 ---
 type: grammar
 name: vscode-prisma
-version: 3b602d3f1ba3d50b90d89b5ebba59c19f7b69a4e
+version: 22b1c9ae85630335e45624ca182dcf9510ee0236
 license: apache-2.0
 ---
                                  Apache License

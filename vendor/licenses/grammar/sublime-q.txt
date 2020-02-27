@@ -1,7 +1,7 @@
 ---
 type: grammar
 name: sublime-q
-version: 823fbb04759742c424fabec97196bf3f9cc28492
+version: 49490c33009710b0330f915d375cbba76e64f6d4
 license: mit
 ---
 MIT License
