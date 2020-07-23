@@ -1,7 +1,7 @@
 ---
 type: grammar
 name: vscode-gcode-syntax
-version: 7702ae413cd87a016498d778097a58253531a407
+version: 5eb56ca341c4ea289ba8f7935ca8b8e81c2e5d80
 license: mit
 ---
 MIT License

@@ -1,7 +1,7 @@
 ---
 type: grammar
 name: atom-language-julia
-version: 73f55e2be936136a20696278d213a8c37f87406c
+version: 4225ce380e0c45841a55e000847b805964ee80ed
 license: mit
 ---
 The atom-language-julia package is licensed under the MIT "Expat" License:

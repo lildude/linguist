@@ -1,7 +1,7 @@
 ---
 type: grammar
 name: vscode-vlang
-version: 8fd5e7ec6867d99c04b1662503f65e512f02aa67
+version: de1c6159164ceaa5fe9037e5ac7dd329bd86b2d6
 license: mit
 ---
 MIT License
