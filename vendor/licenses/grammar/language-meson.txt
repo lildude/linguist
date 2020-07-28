@@ -1,6 +1,7 @@
 ---
 type: grammar
 name: language-meson
+version: b9321234425ba8bc4752e08cf199babd33d1c332
 license: apache-2.0
 ---
 Apache License

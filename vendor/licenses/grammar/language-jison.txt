@@ -1,6 +1,7 @@
 ---
 type: grammar
 name: language-jison
+version: ce8e2c78279b242a95b87e830a60dee55357aedc
 license: mit
 ---
 Copyright © 2014–2017 Chris Dibbern

@@ -1,6 +1,7 @@
 ---
 type: grammar
 name: shaders-tmLanguage
+version: 87c0dca3a39170dbd7ee7e277db4f915fb2de14a
 license: mit
 ---
 MIT License
