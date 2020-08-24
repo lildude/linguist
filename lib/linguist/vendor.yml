@@ -71,7 +71,7 @@
 - ([^\s]*)import\.(css|less|scss|styl)$
 
 # Bootstrap css and js
-- (^|/)bootstrap([^.]*)\.(js|css|less|scss|styl)$
+- (^|/)bootstrap([^./]*)\.(js|css|less|scss|styl)$
 - (^|/)custom\.bootstrap([^\s]*)(js|css|less|scss|styl)$
 
 # Font Awesome
@@ -120,12 +120,12 @@
 ## Commonly Bundled JavaScript frameworks ##
 
 # jQuery
-- (^|/)jquery([^.]*)\.js$
+- (^|/)jquery([^./]*)\.js$
 - (^|/)jquery\-\d\.\d+(\.\d+)?\.js$
 
 # jQuery UI
 - (^|/)jquery\-ui(\-\d\.\d+(\.\d+)?)?(\.\w+)?\.(js|css)$
-- (^|/)jquery\.(ui|effects)\.([^.]*)\.(js|css)$
+- (^|/)jquery\.(ui|effects)\.([^./]*)\.(js|css)$
 
 # jQuery Gantt
 - (^|/)jquery\.fn\.gantt\.js
@@ -168,7 +168,7 @@
 - (^|/)\.vscode/
 
 # Prototype
-- (^|/)prototype(.*)\.js$
+- (^|/)prototype(.*/)\.js$
 - (^|/)effects\.js$
 - (^|/)controls\.js$
 - (^|/)dragdrop\.js$
@@ -177,7 +177,7 @@
 - (.*?)\.d\.ts$
 
 # MooTools
-- (^|/)mootools([^.]*)\d+\.\d+.\d+([^.]*)\.js$
+- (^|/)mootools([^./]*)\d+\.\d+.\d+([^./]*)\.js$
 
 # Dojo
 - (^|/)dojo\.js$
@@ -186,12 +186,12 @@
 - (^|/)MochiKit\.js$
 
 # YUI
-- (^|/)yahoo-([^.]*)\.js$
-- (^|/)yui([^.]*)\.js$
+- (^|/)yahoo-([^./]*)\.js$
+- (^|/)yui([^./]*)\.js$
 
 # WYS editors
 - (^|/)ckeditor\.js$
-- (^|/)tiny_mce([^.]*)\.js$
+- (^|/)tiny_mce([^./]*)\.js$
 - (^|/)tiny_mce/(langs|plugins|themes|utils)
 
 # Ace Editor
@@ -210,18 +210,18 @@
 - (^|/)[Cc]ode[Mm]irror/(\d+\.\d+/)?(lib|mode|theme|addon|keymap|demo)
 
 # SyntaxHighlighter - http://alexgorbatchev.com/
-- (^|/)shBrush([^.]*)\.js$
+- (^|/)shBrush([^./]*)\.js$
 - (^|/)shCore\.js$
 - (^|/)shLegacy\.js$
 
 # AngularJS
-- (^|/)angular([^.]*)\.js$
+- (^|/)angular([^./]*)\.js$
 
 # D3.js
-- (^|\/)d3(\.v\d+)?([^.]*)\.js$
+- (^|\/)d3(\.v\d+)?([^./]*)\.js$
 
 # React
-- (^|/)react(-[^.]*)?\.js$
+- (^|/)react(-[^./]*)?\.js$
 
 # flow-typed
 - (^|/)flow-typed/.*\.js$
@@ -306,8 +306,8 @@
 - \.intellisense\.js$
 
 # jQuery validation plugin (MS bundles this with asp.net mvc)
-- (^|/)jquery([^.]*)\.validate(\.unobtrusive)?\.js$
-- (^|/)jquery([^.]*)\.unobtrusive\-ajax\.js$
+- (^|/)jquery([^./]*)\.validate(\.unobtrusive)?\.js$
+- (^|/)jquery([^./]*)\.unobtrusive\-ajax\.js$
 
 # Microsoft Ajax
 - (^|/)[Mm]icrosoft([Mm]vc)?([Aa]jax|[Vv]alidation)(\.debug)?\.js$
