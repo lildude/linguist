@@ -64,7 +64,7 @@ func (conv *Converter) tmpScopes() map[string]bool {
 
 func (conv *Converter) AddGrammar(source string) error {
 	repo := conv.Load(source)
-	if len(repo.Files) == 0 {
+	if len(repo.Files) == 0 && len(repo.Errors) == 0 {
 		return fmt.Errorf("source '%s' contains no grammar files", source)
 	}
 
@@ -186,7 +186,6 @@ func (conv *Converter) writeJSONFile(path string, rule *grammar.Rule) error {
 	defer j.Close()
 
 	enc := json.NewEncoder(j)
-	enc.SetIndent("", "  ")
 	return enc.Encode(rule)
 }
 

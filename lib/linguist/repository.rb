@@ -95,8 +95,8 @@ module Linguist
     def breakdown_by_file
       @file_breakdown ||= begin
         breakdown = Hash.new { |h,k| h[k] = Array.new }
-        cache.each do |filename, (language, size)|
-          breakdown[language] << [filename, size]
+        cache.each do |filename, (language, _)|
+          breakdown[language] << [filename.dup.force_encoding("UTF-8").scrub, size]
         end
         breakdown
       end

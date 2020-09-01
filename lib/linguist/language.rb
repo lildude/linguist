@@ -260,6 +260,8 @@ module Linguist
       # @name is required
       @name = attributes[:name] || raise(ArgumentError, "missing name")
 
+      @fs_name = attributes[:fs_name]
+
       # Set type
       @type = attributes[:type] ? attributes[:type].to_sym : nil
       if @type && !TYPES.include?(@type)
@@ -271,17 +273,7 @@ module Linguist
       # Set aliases
       @aliases = [default_alias] + (attributes[:aliases] || [])
 
-      # Load the TextMate scope name or try to guess one
-      @tm_scope = attributes[:tm_scope] || begin
-        context = case @type
-                  when :data, :markup, :prose
-                    'text'
-                  when :programming, nil
-                    'source'
-                  end
-        "#{context}.#{@name.downcase}"
-      end
-
+      @tm_scope = attributes[:tm_scope] || 'none'
       @ace_mode = attributes[:ace_mode]
       @codemirror_mode = attributes[:codemirror_mode]
       @codemirror_mime_type = attributes[:codemirror_mime_type]
@@ -320,6 +312,10 @@ module Linguist
     #
     # Returns the name String
     attr_reader :name
+
+    # Public: 
+    # 
+    attr_reader :fs_name
 
     # Public: Get type.
     #
@@ -499,8 +495,9 @@ module Linguist
     end
   end
 
-  extensions   = Samples.cache['extnames']
-  interpreters = Samples.cache['interpreters']
+  samples      = Samples.load_samples
+  extensions   = samples['extnames']
+  interpreters = samples['interpreters']
   popular      = YAML.load_file(File.expand_path("../popular.yml", __FILE__))
 
   languages_yml  = File.expand_path("../languages.yml",  __FILE__)
@@ -538,6 +535,7 @@ module Linguist
 
     Language.create(
       :name              => name,
+      :fs_name           => options['fs_name'],
       :color             => options['color'],
       :type              => options['type'],
       :aliases           => options['aliases'],
