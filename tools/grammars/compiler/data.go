@@ -38,6 +38,8 @@ var KnownFields = map[string]bool{
 	"foregroundColor":       true,
 	"backgroundColor":       true,
 	"increaseIndentPattern": true,
+	"beginComment":          true,
+	"endComment":            true,
 }
 
 // GrammarsInNonStdPath is a list of grammars known to have their syntax .cson or .json files in non-standard directories.
@@ -46,6 +48,7 @@ var GrammarsInNonStdPath = map[string]bool{
 	"hy.tmLanguage":           true,
 	"abl-tmlanguage":          true,
 	"avro.tmLanguage":         true,
+	"grammar":                 true,
 }
 
 // IgnoredFiles is a list of files that look like syntax files but aren't, or are known to be broken and never likely to be fixed.
