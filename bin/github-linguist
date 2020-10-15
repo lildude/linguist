@@ -28,19 +28,20 @@ if File.directory?(path)
   repo = Linguist::Repository.new(rugged, rugged.head.target_id)
 
   if !json_breakdown
-    repo.languages.sort_by { |_, size| size }.reverse.each do |language, size|
+    reverse_ordered = repo.languages.sort_by(&:last).reverse
+    reverse_ordered.each do |language, size|
       percentage = ((size / repo.size.to_f) * 100)
-      percentage = sprintf '%.2f' % percentage
-      puts "%10s %7s  %s" % [size.to_filesize, "#{percentage}%", language]
+      percentage = format("%.2f", percentage)
+      puts format("%10s %7s  %s", size.to_filesize, "#{percentage}%", language)
     end
   end
   if breakdown
     puts
     file_breakdown = repo.breakdown_by_file
-    file_breakdown.each do |lang, files|
+    reverse_ordered.each do |lang, _|
       puts "#{lang}:"
-      files.sort_by{|ar| ar.last}.reverse.each do |file, size|
-        puts "%10s  %s" % [size.to_filesize, file]
+      file_breakdown[lang].each do |file, size|
+        puts format("%10s  %s", size.to_filesize, file)
       end
       puts
     end

@@ -97,6 +97,7 @@ module Linguist
         breakdown = Hash.new { |h,k| h[k] = Array.new }
         cache.each do |filename, (language, size)|
           breakdown[language] << [filename.dup.force_encoding("UTF-8").scrub, size]
+          breakdown[language].sort_by!{|x,y|-y}
         end
         breakdown
       end
