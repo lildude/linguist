@@ -106,19 +106,20 @@ You can try running `github-linguist` on the root directory in this repository i
 
 ```console
 $ github-linguist --breakdown
-68.57%  Ruby
-22.90%  C
-6.93%   Go
-1.21%   Lex
-0.39%   Shell
+ 237.59 KB  69.18%  Ruby
+  73.90 KB  21.52%  C
+  25.22 KB   7.34%  Go
+   3.87 KB   1.13%  Lex
+   1.67 KB   0.49%  Shell
+   1.18 KB   0.34%  Dockerfile
 
 Ruby:
-  27.97 KB  test/test_file_blob.rb
-   20.6 KB  test/test_language.rb
-  18.71 KB  lib/linguist/generated.rb
-  15.89 KB  lib/linguist/heuristics.rb
-  14.04 KB  lib/linguist/language.rb
-   13.3 KB  test/test_blob.rb
+  28.01 KB  test/test_file_blob.rb
+  23.33 KB  lib/linguist/generated.rb
+  21.29 KB  test/test_language.rb
+  17.36 KB  test/test_heuristics.rb
+  13.90 KB  lib/linguist/language.rb
+  13.69 KB  test/test_blob.rb
 [...]
 ```
 
@@ -126,7 +127,7 @@ A specific file can be assessed too:
 
 ```console
 $ github-linguist lib/linguist.rb
-linguist.rb: 3.1 KB, 103 lines (93 sloc)
+linguist.rb: 3.17 KB, 104 lines (95 sloc)
 
          type: Text
     mime type: application/x-ruby
@@ -143,10 +144,13 @@ You can try running `github-linguist` on files in this repository itself:
 
 ```console
 $ github-linguist grammars.yml
-grammars.yml: 884 lines (884 sloc)
-  type:      Text
-  mime type: text/x-yaml
-  language:  YAML
+grammars.yml: 20.55 KB, 914 lines (914 sloc)
+
+         type: Text
+    mime type: text/x-yaml
+     language: YAML
+language type: data
+    in stats?: false - data type doesn't count towards statistics
 ```
 
 #### Docker
@@ -156,26 +160,27 @@ If you have Docker installed you can build an image and run Linguist within a co
 ```console
 $ docker build -t linguist .
 $ docker run --rm -v $(pwd):$(pwd) -w $(pwd) -t linguist
-68.57%  Ruby
-22.90%  C
-6.93%   Go
-1.21%   Lex
-0.39%   Shell
+ 237.59 KB  69.18%  Ruby
+  73.90 KB  21.52%  C
+  25.22 KB   7.34%  Go
+   3.87 KB   1.13%  Lex
+   1.67 KB   0.49%  Shell
+   1.18 KB   0.34%  Dockerfile
 $ docker run --rm -v $(pwd):$(pwd) -w $(pwd) -t linguist github-linguist --breakdown
-68.57%  Ruby
-22.90%  C
-6.93%   Go
-1.21%   Lex
-0.39%   Shell
+ 237.59 KB  69.18%  Ruby
+  73.90 KB  21.52%  C
+  25.22 KB   7.34%  Go
+   3.87 KB   1.13%  Lex
+   1.67 KB   0.49%  Shell
+   1.18 KB   0.34%  Dockerfile
 
 Ruby:
-Gemfile
-Rakefile
-bin/git-linguist
-bin/github-linguist
-ext/linguist/extconf.rb
-github-linguist.gemspec
-lib/linguist.rb
+  28.01 KB  test/test_file_blob.rb
+  23.33 KB  lib/linguist/generated.rb
+  21.29 KB  test/test_language.rb
+  17.36 KB  test/test_heuristics.rb
+  13.90 KB  lib/linguist/language.rb
+  13.69 KB  test/test_blob.rb
 …
 ```
 
