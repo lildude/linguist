@@ -27,8 +27,8 @@ class TestRepository < Minitest::Test
 
   def test_linguist_breakdown
     assert linguist_repo.breakdown_by_file.has_key?("Ruby")
-    assert linguist_repo.breakdown_by_file["Ruby"].include?("bin/github-linguist")
-    assert linguist_repo.breakdown_by_file["Ruby"].include?("lib/linguist/language.rb")
+    assert linguist_repo.breakdown_by_file["Ruby"].any? { |f| f.include?("bin/github-linguist") }
+    assert linguist_repo.breakdown_by_file["Ruby"].any? { |f| f.include?("lib/linguist/language.rb") }
   end
 
   def test_incremental_stats
@@ -68,16 +68,16 @@ class TestRepository < Minitest::Test
     repo = linguist_repo(attr_commit)
 
     assert repo.breakdown_by_file.has_key?("Java")
-    assert repo.breakdown_by_file["Java"].include?("lib/linguist.rb")
+    assert repo.breakdown_by_file["Java"].any? { |f| f.include?("lib/linguist.rb") }
 
     assert repo.breakdown_by_file.has_key?("Ruby")
     assert !repo.breakdown_by_file["Ruby"].empty?
 
     # Ensures the filename that contains unicode char is UTF-8 encoded and invalid chars scrubbed
     assert repo.breakdown_by_file.has_key?("Perl")
-    assert repo.breakdown_by_file["Perl"].include?("test/fixtures/ba�r/file_ã.pl")
-    assert_equal "UTF-8", repo.breakdown_by_file["Perl"].first.encoding.to_s
-    assert repo.breakdown_by_file["Perl"].first.valid_encoding?
+    assert repo.breakdown_by_file["Perl"].any? { |f| f.include?("test/fixtures/ba�r/file_ã.pl") }
+    assert_equal "UTF-8", repo.breakdown_by_file["Perl"].first.first.encoding.to_s
+    assert repo.breakdown_by_file["Perl"].first.first.valid_encoding?
   end
 
   def test_commit_with_git_attributes_data
@@ -90,7 +90,7 @@ class TestRepository < Minitest::Test
     # It's incremental but should bust the cache
     new_repo = Linguist::Repository.incremental(rugged_repository, attr_commit, old_commit, old_repo.cache)
 
-    assert new_repo.breakdown_by_file["Java"].include?("lib/linguist.rb")
+    assert new_repo.breakdown_by_file["Java"].any? { |f| f.include?("lib/linguist.rb") }
   end
 
   def test_linguist_override_vendored?
