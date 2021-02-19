@@ -35,7 +35,6 @@
 # test changes in `test/test_blob.rb`.
 #
 # Please keep this list alphabetized. Capitalization comes before lowercase.
-
 ---
 1C Enterprise:
   type: programming
@@ -61,6 +60,14 @@ ABAP:
   tm_scope: source.abap
   ace_mode: abap
   language_id: 1
+ABAP CDS:
+  type: programming
+  color: "#555e25"
+  extensions:
+    - ".asddls"
+  tm_scope: "source.abapcds"
+  language_id: 452681853
+  ace_mode: text
 ABNF:
   type: data
   ace_mode: text
@@ -451,6 +458,16 @@ Batchfile:
   ace_mode: batchfile
   color: "#C1F12E"
   language_id: 29
+Beef:
+  type: programming
+  color: "#a52f4e"
+  extensions:
+  - ".bf"
+  tm_scope: source.cs
+  ace_mode: csharp
+  codemirror_mode: clike
+  codemirror_mime_type: text/x-csharp
+  language_id: 545626333
 Befunge:
   type: programming
   extensions:
@@ -2085,14 +2102,11 @@ HTML+Django:
   - ".jinja"
   - ".j2"
   - ".jinja2"
-  - ".njk"
   aliases:
   - django
   - html+django/jinja
   - html+jinja
   - htmldjango
-  - njk
-  - nunjucks
   ace_mode: django
   codemirror_mode: django
   codemirror_mime_type: text/x-django
@@ -2381,6 +2395,16 @@ Ignore List:
   codemirror_mode: shell
   codemirror_mime_type: text/x-sh
   language_id: 74444240
+ImageJ Macro:
+  type: programming
+  color: "#99AAFF"
+  aliases:
+  - ijm
+  extensions:
+  - ".ijm"
+  ace_mode: text
+  tm_scope: none
+  language_id: 575143428
 Inform 7:
   type: programming
   wrap: true
@@ -2784,6 +2808,13 @@ Kotlin:
   codemirror_mode: clike
   codemirror_mime_type: text/x-kotlin
   language_id: 189
+Kusto:
+  type: data
+  extensions:
+  - ".csl"
+  tm_scope: source.kusto
+  ace_mode: text
+  language_id: 225697190
 LFE:
   type: programming
   color: "#4C3023"
@@ -3685,6 +3716,16 @@ NumPy:
   codemirror_mode: python
   codemirror_mime_type: text/x-python
   language_id: 254
+Nunjucks:
+  type: markup
+  color: "#3d8137"
+  extensions:
+  - ".njk"
+  aliases:
+  - njk
+  tm_scope: text.html.nunjucks
+  ace_mode: nunjucks
+  language_id: 461856962
 OCaml:
   type: programming
   ace_mode: ocaml
@@ -4706,6 +4747,16 @@ Rebol:
   ace_mode: text
   tm_scope: source.rebol
   language_id: 319
+Record Jar:
+  type: data
+  filenames:
+  - language-subtag-registry.txt
+  tm_scope: source.record-jar
+  codemirror_mode: properties
+  codemirror_mime_type: text/x-properties
+  ace_mode: text
+  color: "#0673ba"
+  language_id: 865765202
 Red:
   type: programming
   color: "#f50000"
