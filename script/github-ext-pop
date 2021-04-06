@@ -74,7 +74,7 @@ end
 
 def gather_results(extension, order = nil)
   sort = order.nil? ? nil : "indexed"
-  STDERR.print "#{order.nil? ? "best match" : order}: "
+  $stderr.print "#{order.nil? ? "best match" : order}: "
   (1..10).each do |i|
     begin
       if @total_count > 0
@@ -91,16 +91,21 @@ def gather_results(extension, order = nil)
           end
         end
       end
-      STDERR.print "#{i} "
+      sleep 10
+      $stderr.print "#{i} "
     rescue Octokit::Unauthorized => e
-      STDERR.puts e.message
+      $stderr.puts e.message
       abort
-    rescue Octokit::TooManyRequests, Octokit::AbuseDetected
+    rescue Octokit::TooManyRequests
+      puts "Sleeping for #{@client.rate_limit.reset_in} seconds..."
       sleep @client.rate_limit.resets_in
       retry
-    rescue Octokit::NotFound
-      STDERR.puts "No files with .#{extension} found."
+    rescue Octokit::AbuseDetected => e
+      $stderr.puts e.message
       abort
+    rescue Octokit::NotFound
+      puts "No files with .#{extension} found."
+      exit
     end
   end
 end
