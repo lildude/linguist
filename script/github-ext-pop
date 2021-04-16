@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-#/ Usage: GITHUB_TOKEN=<github_access_token> github-ext-pop [-h|--help|--download] [--list-repos] <extension>
+#/ Usage: LINGUIST_GITHUB_TOKEN=<github_access_token> github-ext-pop [-h|--help|--download] [--list-repos] <extension>
 #/
 #/ Counts, and optionally downloads up to the first 1000 public files found on GitHub that have the supplied extension.
 #/
-#/ Requires the GITHUB_TOKEN environment variable to be set containing a GitHub personal access token.
+#/ Requires the LINGUIST_GITHUB_TOKEN environment variable to be set containing a GitHub personal access token.
 #/
 
 require 'bundler/inline'
@@ -20,7 +20,7 @@ def usage
   system "grep '^#/' '#{__FILE__}' | cut -c 4-"
 end
 
-if ARGV.include?('--help') || ARGV.include?('-h') || ENV['GITHUB_TOKEN'].nil? || ARGV[0].nil?
+if ARGV.include?('--help') || ARGV.include?('-h') || ENV['LINGUIST_GITHUB_TOKEN'].nil? || ARGV[0].nil?
   usage
   exit 2
 end
