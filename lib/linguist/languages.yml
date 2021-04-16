@@ -87,6 +87,16 @@ AGS Script:
   codemirror_mode: clike
   codemirror_mime_type: text/x-c++src
   language_id: 2
+AIDL:
+  type: programming
+  color: "#34EB6B"
+  tm_scope: source.aidl
+  extensions:
+  - ".aidl"
+  ace_mode: text
+  interpreters:
+  - aidl
+  language_id: 451700185
 AL:
   type: programming
   color: "#3AA2B5"
@@ -435,6 +445,14 @@ Awk:
   tm_scope: source.awk
   ace_mode: text
   language_id: 28
+BASIC:
+  type: programming
+  extensions:
+  - ".bas"
+  tm_scope: source.basic
+  ace_mode: text
+  color: "#ff0000"
+  language_id: 28923963
 Ballerina:
   type: programming
   extensions:
@@ -485,6 +503,14 @@ BibTeX:
   codemirror_mode: stex
   codemirror_mime_type: text/x-stex
   language_id: 982188347
+Bicep:
+  type: programming
+  color: "#519aba"
+  extensions:
+  - ".bicep"
+  tm_scope: source.bicep
+  ace_mode: text
+  language_id: 321200902
 Bison:
   type: programming
   color: "#6A463F"
@@ -739,6 +765,14 @@ CSV:
   extensions:
   - ".csv"
   language_id: 51
+CUE:
+  type: programming
+  extensions:
+  - ".cue"
+  tm_scope: source.cue
+  ace_mode: text
+  color: "#5886E1"
+  language_id: 356063509
 CWeb:
   type: programming
   extensions:
@@ -1097,6 +1131,13 @@ Cuda:
   codemirror_mime_type: text/x-c++src
   color: "#3A4E3A"
   language_id: 77
+Cue Sheet:
+  type: data
+  extensions:
+  - ".cue"
+  tm_scope: source.cuesheet
+  ace_mode: text
+  language_id: 942714150
 Cycript:
   type: programming
   extensions:
@@ -1642,6 +1683,19 @@ Fortran Free Form:
   codemirror_mode: fortran
   codemirror_mime_type: text/x-fortran
   language_id: 761352333
+FreeBasic:
+  type: programming
+  color: "#867db1"
+  extensions:
+  - ".bi"
+  - ".bas"
+  tm_scope: source.vbnet
+  aliases:
+  - fb
+  ace_mode: text
+  codemirror_mode: vb
+  codemirror_mime_type: text/x-vb
+  language_id: 472896659
 FreeMarker:
   type: programming
   color: "#0050b2"
@@ -3347,15 +3401,6 @@ Max:
   codemirror_mode: javascript
   codemirror_mime_type: application/json
   language_id: 227
-MediaWiki:
-  type: prose
-  wrap: true
-  extensions:
-  - ".mediawiki"
-  - ".wiki"
-  tm_scope: text.html.mediawiki
-  ace_mode: text
-  language_id: 228
 Mercury:
   type: programming
   color: "#ff2b2b"
@@ -5026,6 +5071,8 @@ Ruby:
   language_id: 326
 Rust:
   type: programming
+  aliases:
+  - rs
   color: "#dea584"
   extensions:
   - ".rs"
@@ -6168,6 +6215,19 @@ Wget Config:
   tm_scope: source.wgetrc
   ace_mode: text
   language_id: 668457123
+Wikitext:
+  type: prose
+  wrap: true
+  aliases:
+  - mediawiki
+  - wiki
+  extensions:
+  - ".mediawiki"
+  - ".wiki"
+  - ".wikitext"
+  tm_scope: text.html.mediawiki
+  ace_mode: text
+  language_id: 228
 Windows Registry Entries:
   type: data
   extensions:
