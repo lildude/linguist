@@ -91,7 +91,6 @@ def gather_results(extension, order = nil)
           end
         end
       end
-      sleep 10
       $stderr.print "#{i} "
     rescue Octokit::Unauthorized => e
       $stderr.puts e.message
@@ -107,6 +106,7 @@ def gather_results(extension, order = nil)
       puts "No files with .#{extension} found."
       exit
     end
+    sleep rand(10..30)
   end
 end
 
