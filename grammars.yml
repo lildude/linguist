@@ -60,6 +60,7 @@ vendor/grammars/NimLime:
 - source.nim_filter
 - source.nimcfg
 vendor/grammars/Nova.tmLanguage:
+- source.keyvalues
 - source.redirects
 - source.solution
 - text.robots-txt
@@ -177,6 +178,8 @@ vendor/grammars/aidl-language:
 - source.aidl
 vendor/grammars/ampl:
 - source.ampl
+vendor/grammars/android-system-tools:
+- source.bp
 vendor/grammars/ant.tmbundle:
 - text.xml.ant
 vendor/grammars/antlr.tmbundle:
@@ -760,8 +763,6 @@ vendor/grammars/powershell:
 - source.powershell
 vendor/grammars/processing.tmbundle:
 - source.processing
-vendor/grammars/protobuf-tmbundle:
-- source.protobuf
 vendor/grammars/python-django.tmbundle:
 - source.python.django
 - text.html.django
@@ -791,6 +792,9 @@ vendor/grammars/scilab.tmbundle:
 - source.scilab
 vendor/grammars/secondlife-lsl:
 - source.lsl
+vendor/grammars/selinux-policy-languages:
+- source.cil
+- source.sepolicy
 vendor/grammars/shaders-tmLanguage:
 - source.hlsl
 - source.shaderlab
@@ -892,6 +896,10 @@ vendor/grammars/swift.tmbundle:
 vendor/grammars/tcl.tmbundle:
 - source.tcl
 - text.html.tcl
+vendor/grammars/textmate.tmbundle:
+- source.regexp.oniguruma
+- source.tm-properties
+- textmate.format-string
 vendor/grammars/thrift.tmbundle:
 - source.thrift
 vendor/grammars/toml.tmbundle:
@@ -907,6 +915,8 @@ vendor/grammars/vscode-codeql:
 - source.ql
 vendor/grammars/vscode-cue:
 - source.cue
+vendor/grammars/vscode-fluent:
+- source.ftl
 vendor/grammars/vscode-gcode-syntax:
 - source.gcode
 vendor/grammars/vscode-gedcom:
@@ -926,6 +936,9 @@ vendor/grammars/vscode-plantuml:
 vendor/grammars/vscode-prisma:
 - inline.prisma
 - source.prisma
+vendor/grammars/vscode-proto3:
+- markdown.proto.codeblock
+- source.protobuf
 vendor/grammars/vscode-scala-syntax:
 - source.scala
 vendor/grammars/vscode-singularity:

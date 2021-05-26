@@ -69,8 +69,7 @@
 	url = https://github.com/github-linguist/NSIS
 [submodule "vendor/grammars/NimLime"]
 	path = vendor/grammars/NimLime
-	url = https://github.com/timotheecour/NimLime
-	branch = master2
+	url = https://github.com/nim-lang/NimLime
 [submodule "vendor/grammars/Nova.tmLanguage"]
 	path = vendor/grammars/Nova.tmLanguage
 	url = https://github.com/Nixinova/Nova.tmLanguage
@@ -222,6 +221,9 @@
 [submodule "vendor/grammars/ampl"]
 	path = vendor/grammars/ampl
 	url = https://github.com/ampl/sublime-ampl
+[submodule "vendor/grammars/android-system-tools"]
+	path = vendor/grammars/android-system-tools
+	url = https://github.com/flimberger/android-system-tools
 [submodule "vendor/grammars/ant.tmbundle"]
 	path = vendor/grammars/ant.tmbundle
 	url = https://github.com/textmate/ant.tmbundle
@@ -858,9 +860,6 @@
 [submodule "vendor/grammars/processing.tmbundle"]
 	path = vendor/grammars/processing.tmbundle
 	url = https://github.com/textmate/processing.tmbundle
-[submodule "vendor/grammars/protobuf-tmbundle"]
-	path = vendor/grammars/protobuf-tmbundle
-	url = https://github.com/michaeledgar/protobuf-tmbundle
 [submodule "vendor/grammars/python-django.tmbundle"]
 	path = vendor/grammars/python-django.tmbundle
 	url = https://github.com/textmate/python-django.tmbundle
@@ -900,6 +899,9 @@
 [submodule "vendor/grammars/secondlife-lsl"]
 	path = vendor/grammars/secondlife-lsl
 	url = https://github.com/textmate/secondlife-lsl.tmbundle
+[submodule "vendor/grammars/selinux-policy-languages"]
+	path = vendor/grammars/selinux-policy-languages
+	url = https://github.com/google/selinux-policy-languages
 [submodule "vendor/grammars/shaders-tmLanguage"]
 	path = vendor/grammars/shaders-tmLanguage
 	url = https://github.com/tgjones/shaders-tmLanguage
@@ -1032,6 +1034,9 @@
 [submodule "vendor/grammars/tcl.tmbundle"]
 	path = vendor/grammars/tcl.tmbundle
 	url = https://github.com/textmate/tcl.tmbundle
+[submodule "vendor/grammars/textmate.tmbundle"]
+	path = vendor/grammars/textmate.tmbundle
+	url = https://github.com/textmate/textmate.tmbundle
 [submodule "vendor/grammars/thrift.tmbundle"]
 	path = vendor/grammars/thrift.tmbundle
 	url = https://github.com/textmate/thrift.tmbundle
@@ -1054,6 +1059,9 @@
 [submodule "vendor/grammars/vscode-cue"]
 	path = vendor/grammars/vscode-cue
 	url = https://github.com/cue-sh/vscode-cue
+[submodule "vendor/grammars/vscode-fluent"]
+	path = vendor/grammars/vscode-fluent
+	url = https://github.com/macabeus/vscode-fluent
 [submodule "vendor/grammars/vscode-gcode-syntax"]
 	path = vendor/grammars/vscode-gcode-syntax
 	url = https://github.com/appliedengdesign/vscode-gcode-syntax
@@ -1075,6 +1083,9 @@
 [submodule "vendor/grammars/vscode-prisma"]
 	path = vendor/grammars/vscode-prisma
 	url = https://github.com/prisma/vscode-prisma
+[submodule "vendor/grammars/vscode-proto3"]
+	path = vendor/grammars/vscode-proto3
+	url = https://github.com/zxh0/vscode-proto3
 [submodule "vendor/grammars/vscode-scala-syntax"]
 	path = vendor/grammars/vscode-scala-syntax
 	url = https://github.com/scala/vscode-scala-syntax

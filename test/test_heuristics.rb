@@ -276,7 +276,7 @@ class TestHeuristics < Minitest::Test
       "FreeBasic" => all_fixtures("FreeBasic", "*.bi")
     })
   end
-  
+
   def test_builds_by_heuristics
     assert_heuristics({
       nil => all_fixtures("Text"),
@@ -393,6 +393,13 @@ class TestHeuristics < Minitest::Test
     })
   end
 
+  def test_ftl_by_heuristics
+    assert_heuristics({
+      "Fluent" => all_fixtures("Fluent", "*.ftl"),
+      "FreeMarker" => all_fixtures("FreeMarker", "*.ftl")
+    }, alt_name="main.ftl")
+  end
+
   def test_gd_by_heuristics
     assert_heuristics({
       "GAP" => all_fixtures("GAP", "*.gd"),
@@ -424,15 +431,11 @@ class TestHeuristics < Minitest::Test
   end
 
   def test_h_by_heuristics
-    ambiguous = [
-        "#{samples_path}/C++/Field.h",
-        "#{samples_path}/C++/rpc.h",
-    ]
     assert_heuristics({
       "Objective-C" => all_fixtures("Objective-C", "*.h"),
-      "C++" => all_fixtures("C++", "*.h") - ambiguous,
-      # no heuristic for C
-      nil => all_fixtures("C", "*.h")
+      "C++" => all_fixtures("C++", "*.h"),
+      # Default to C if the content is ambiguous
+      "C" => all_fixtures("C", "*.h")
     })
   end
 
@@ -845,7 +848,7 @@ class TestHeuristics < Minitest::Test
       "Vim script" => all_fixtures("Vim script", "*.vba")
     })
   end
- 
+
   def test_w_by_heuristics
     assert_heuristics({
       "CWeb" => all_fixtures("CWeb", "*.w"),
