@@ -431,6 +431,7 @@ Avro IDL:
   language_id: 785497837
 Awk:
   type: programming
+  color: "#c30e9b"
   extensions:
   - ".awk"
   - ".auk"
@@ -2883,7 +2884,7 @@ Kit:
   language_id: 188
 Kotlin:
   type: programming
-  color: "#F18E33"
+  color: "#A97BFF"
   extensions:
   - ".kt"
   - ".ktm"
@@ -4050,6 +4051,16 @@ P4:
   tm_scope: source.p4
   ace_mode: text
   language_id: 348895984
+PEG.js:
+  type: programming
+  color: "#234d6b"
+  extensions:
+  - ".pegjs"
+  tm_scope: source.pegjs
+  ace_mode: javascript
+  codemirror_mode: javascript
+  codemirror_mime_type: text/javascript
+  language_id: 81442128
 PHP:
   type: programming
   tm_scope: text.html.php
@@ -4436,7 +4447,7 @@ Protocol Buffer:
   - Protocol Buffers
   extensions:
   - ".proto"
-  tm_scope: source.protobuf
+  tm_scope: source.proto
   ace_mode: protobuf
   codemirror_mode: protobuf
   codemirror_mime_type: text/x-protobuf
@@ -4871,6 +4882,7 @@ Redirect Rules:
   language_id: 1020148948
 Regular Expression:
   type: data
+  color: "#009a00"
   extensions:
   - ".regexp"
   - ".regex"
