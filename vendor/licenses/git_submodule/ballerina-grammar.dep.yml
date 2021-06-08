@@ -1,6 +1,6 @@
 ---
 name: ballerina-grammar
-version: 18c7f3debea7191ffd410a347c02d768aa5b0f55
+version: 59f5a724cfbc60981e1fb8694f19a376e45ceeab
 type: git_submodule
 homepage: https://github.com/ballerina-platform/ballerina-grammar
 license: apache-2.0

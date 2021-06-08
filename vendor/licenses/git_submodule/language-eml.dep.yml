@@ -1,6 +1,6 @@
 ---
 name: language-eml
-version: 4312b88a71b4097ac7917a210f70967e97e88fb6
+version: fb467d5c7264a5daaa6ab9973b2b7f5fc2e62847
 type: git_submodule
 homepage: https://github.com/mariozaizar/language-eml
 license: mit

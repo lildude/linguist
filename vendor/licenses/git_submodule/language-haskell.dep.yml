@@ -1,6 +1,6 @@
 ---
 name: language-haskell
-version: 83c51c5f9878dd28e854dfe512a3f6851f3ab518
+version: 9d397fdc9014cb24160fdb9f35c4b1c15cf64718
 type: git_submodule
 homepage: https://github.com/atom-haskell/language-haskell
 license: mit

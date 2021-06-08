@@ -1,6 +1,6 @@
 ---
 name: language-css
-version: 7a9d4dbf8f2c0718a500758fa9a129f030ad6c65
+version: 43066ac0aa5e3366af74759931fbfada1a08487d
 type: git_submodule
 homepage: https://github.com/atom/language-css
 license: mit

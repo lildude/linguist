@@ -1,6 +1,6 @@
 ---
 name: language-viml
-version: c7aa9e52e76c95ac41791312542ec5d03333599b
+version: 7621e751f40c94c02a73da996abe988fb9bb9fe5
 type: git_submodule
 homepage: https://github.com/Alhadis/language-viml
 license: mit
@@ -10,7 +10,7 @@ licenses:
     The MIT License (MIT)
 
     Copyright (c) 2014-2016 Evan Hahn
-    Copyright (c) 2016-2020 John Gardner
+    Copyright (c) 2016-2021 John Gardner
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
