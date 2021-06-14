@@ -101,7 +101,9 @@ def gather_results(extension, order = nil)
       retry
     rescue Octokit::AbuseDetected => e
       $stderr.puts e.message
-      abort
+      sleep @client.rate_limit.resets_in
+      retry
+      #abort
     rescue Octokit::NotFound
       puts "No files with .#{extension} found."
       exit
